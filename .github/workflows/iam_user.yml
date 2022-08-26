@@ -27,7 +27,7 @@ jobs:
         id: init
         run: terraform init
         working-directory: "./main/practice"
-
+    
       # - name: Terraform Init
       #   id: init
       #   run: |  

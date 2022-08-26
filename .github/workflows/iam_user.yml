@@ -1,0 +1,48 @@
+name: IAM user with GitHub action
+env:
+  Message: "Hi, i'm akash vaidya"
+
+on: 
+  push:
+    branches: ["main", "master"]
+  pull_request:
+    branches: ["main", "master"]
+
+  workflow_dispatch:
+
+jobs:
+  terraform:
+      name: "Terraform"
+      runs-on: ubuntu-latest
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Validate
+        id: validate
+        run: terraform validate -no-color
+
+      - name: Terraform Plan
+        if: github.event_name == 'push'
+        id: pliam_useran
+        run: terraform plan -no-color
+        continue-on-error: true
+
+      - name: Terraform Apply
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+        working-directory: "./main/practice"

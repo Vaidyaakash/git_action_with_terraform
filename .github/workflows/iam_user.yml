@@ -37,7 +37,8 @@ jobs:
         run: |
             rm -rf .terraform
             terraform init
-        working-directory: "./main/practice"
+            terraform init -reconfigure
+        # working-directory: "./main/practice"
 
       - name: Terraform Validate
         id: validate

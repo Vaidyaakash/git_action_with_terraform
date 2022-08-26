@@ -28,9 +28,16 @@ jobs:
         with:
           terraform_version: 1.1.7
 
+      # - name: Terraform Init
+      #   id: init
+      #   run: terraform init
+
       - name: Terraform Init
         id: init
-        run: terraform init -reconfigure
+        run: |
+            rm -rf .terraform
+            terraform init
+        working-directory: "./main/practice"
 
       - name: Terraform Validate
         id: validate

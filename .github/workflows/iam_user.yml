@@ -32,20 +32,20 @@ jobs:
       #   id: init
       #   run: terraform init
 
-      - name: Terraform Init
-        id: init
-        run: |
-            rm -rf .terraform
-            terraform init
-            terraform init -reconfigure
-        working-directory: "./main/practice"
+      # - name: Terraform Init
+      #   id: init
+      #   run: |
+      #       rm -rf .terraform
+      #       terraform init
+      #       terraform init -reconfigure
+      #   working-directory: "./main/practice"
 
-      # - name: "Terraform Init"
-      #   uses: hashicorp/terraform-github-actions@master
-      #   with:
-      #     tf_actions_version: 0.12.13
-      #     tf_actions_subcommand: "init"
-      #     tf_actions_working_dir: "terraform"
+      - name: "Terraform Init"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: "init"
+          tf_actions_working_dir: "terraform"
 
       - name: Terraform Validate
         id: validate

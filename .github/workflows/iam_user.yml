@@ -1,6 +1,6 @@
 name: IAM user with GitHub action
 env:
-  Message: "Hello, i'm akash vaidya"
+  Message: "Helo, i'm akash vaidya"
 
 on: 
   push:
@@ -30,7 +30,7 @@ jobs:
 
       # - name: Terraform Init
       #   id: init
-      #   run: |
+      #   run: |  
       #       rm -rf .terraform
       #       terraform init
       #       terraform init -reconfigure

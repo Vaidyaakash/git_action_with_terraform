@@ -1,6 +1,6 @@
 name: IAM user with GitHub action
 env:
-  Message: "Hi, i'm akash vaidya"
+  Message: "Hello, i'm akash vaidya"
 
 on: 
   push:

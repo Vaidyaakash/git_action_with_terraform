@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Terraform Init
-        id: init
+        id: init  
         run: terraform init
         working-directory: "./main/practice"
 

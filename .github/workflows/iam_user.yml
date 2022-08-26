@@ -23,11 +23,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: 1.1.7
-
       # - name: Terraform Init
       #   id: init
       #   run: terraform init
@@ -40,12 +35,15 @@ jobs:
       #       terraform init -reconfigure
       #   working-directory: "./main/practice"
 
-      - name: "Terraform Init"
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.12.13
-          tf_actions_subcommand: "init -reconfigure"
-          tf_actions_working_dir: "terraform"
+      - name: Terraform initialize
+        id: init
+        run: terraform init
+        working-directory: "./main/practice"
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt
+        working-directory: "./main/practice"
 
       - name: Terraform Validate
         id: validate

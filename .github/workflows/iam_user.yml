@@ -26,9 +26,10 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
 
-      - name: Terraform Init
+      - name: Terraform initialize
         id: init
         run: terraform init
+        working-directory: "./main/practice"
 
       - name: Terraform Validate
         id: validate

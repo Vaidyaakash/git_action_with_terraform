@@ -39,7 +39,7 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: terraform validate -no-color
-        working-directory: "./main/practice"
+        # working-directory: "./main/practice"
 
       - name: Terraform Plan
         if: github.event_name == 'push'

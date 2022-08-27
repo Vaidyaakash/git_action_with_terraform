@@ -2,7 +2,7 @@ name: IAM user with GitHub action
 env:
   Message: "Helo, i'm akash vaidya"
 
-on: 
+on:
   push:
     branches: ["main", "master"]
   pull_request:

@@ -1,8 +1,8 @@
 name: IAM user with GitHub action
 env:
-  Message: "Helo, i'm akash vaidya"
+  Message: "Hello, i'm akash vaidya"
 
-on:
+on: 
   push:
     branches: ["main", "master"]
   pull_request:
@@ -42,20 +42,14 @@ jobs:
         run: terraform validate -no-color
         working-directory: "./main/practice"
 
-      - name: terraform destroy
-        uses: dflook/terraform-destroy-workspace@v1
-        with:
-          path: "./main/practice"
-          # workspace: ${{ github.head_ref }}
+      - name: Terraform Plan
+        if: github.event_name == 'push'
+        id: pliam_useran
+        run: terraform plan -no-color
+        continue-on-error: true
+        working-directory: "./main/practice"
 
-
-      # - name: Terraform Plan
-      #   if: github.event_name == 'push'
-      #   id: pliam_useran
-      #   run: terraform plan -no-color
-      #   continue-on-error: true
-      #   working-directory: "./main/practice"
-      # - name: Terraform Apply
-      #   # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      #   run: terraform apply -auto-approve
-      #   working-directory: "./main/practice"
+      - name: Terraform Apply
+        # if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: terraform apply -auto-approve
+        working-directory: "./main/practice"
